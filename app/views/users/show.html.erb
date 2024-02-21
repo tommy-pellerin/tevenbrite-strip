@@ -1,10 +1,12 @@
 
 <div class="container"> 
+  
   <% if user_signed_in? %>
     <h1>Ton profil</h1>
     <ul>  
+      <li> Id : <%= current_user.id %></li>
       <li> Nom : <%= current_user.first_name  %></li>
-      <li> prénom : <%= current_user.last_name  %></li>
+      <li> Prénom : <%= current_user.last_name  %></li>
       <li> Ta description : <%= current_user.description %></li>
       <li> Voici ton email : <%= current_user.email %></li> 
     </ul>      
