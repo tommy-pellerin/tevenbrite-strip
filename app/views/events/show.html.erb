@@ -12,4 +12,7 @@
   <% if current_user == @event.admin %>
     <p><%= link_to "Destroy", event_path(@event), data: {turbo: true,turbo_method: :delete,turbo_confirm: "Are you sure?"}, class:"btn btn-danger" %></p>
   <% end %>
+  <% if user_signed_in? %>
+    <p><%= link_to "Rejoindre l'événement", new_event_attendance_path(@event.id), class:"btn btn-primary" %></p>
+  <% end %>
 </div>

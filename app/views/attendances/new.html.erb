@@ -1,0 +1,18 @@
+<div class="container">
+  <h1>Participer à l'évent</h1>
+
+  <%= form_with(model: @attendance, url: event_attendances_path(@event,@attendance)) do |form| %>
+    <div class = "form-group">
+      <%= form.label "Participant :" %>
+      <%= form.text_field :user, class:"form-control" %>
+      <%= form.label "Event :"  %>
+      <%= form.text_field :event, class:"form-control" %>     
+    </div>  
+    <div class = "form-group">
+      <button type="submit" class="btn btn-primary">Participer</button>
+    </div>
+  <% end %>
+
+<%= button_to "Passer commande", checkout_create_path(total: 10, event_id: @event.id), class: "btn btn-primary", data: {turbo: false} %>
+
+</div>
