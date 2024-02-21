@@ -4,6 +4,9 @@ class CheckoutController < ApplicationController
     @event_id = params[:event_id]
     @session = Stripe::Checkout::Session.create(
       payment_method_types: ['card'],
+      metadata: {
+        event_id: @event_id
+      },
       line_items: [
         {
           price_data: {
@@ -13,11 +16,10 @@ class CheckoutController < ApplicationController
               name: 'Rails Stripe Checkout',
             },
           },
-          quantity: 1
+          quantity: 1,
+          
         },
-        metadata: {
-          event_id: @event_id
-        },
+        
       ],
       mode: 'payment',
       success_url: checkout_success_url + '?session_id={CHECKOUT_SESSION_ID}',
@@ -30,8 +32,10 @@ class CheckoutController < ApplicationController
     @session = Stripe::Checkout::Session.retrieve(params[:session_id])
     @payment_intent = Stripe::PaymentIntent.retrieve(@session.payment_intent)
     @event_id = @session.metadata.event_id
+    redirect_to event_path(@event_id)
   end
 
   def cancel
   end
+
 end
