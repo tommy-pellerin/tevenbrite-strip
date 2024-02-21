@@ -1,5 +1,10 @@
 class AttendancesController < ApplicationController
   before_action :authenticate_user, only: [:new]
+
+  def index
+    @event = Event.find(params[:event_id])    
+    @attendance_participants = @event.users
+  end
   
   def new
     @event = Event.find(params[:event_id])

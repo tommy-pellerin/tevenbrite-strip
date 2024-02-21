@@ -1,0 +1,15 @@
+<div class = "container">
+  <h1>Gestion de l'event</h1>
+  <h4>Nombre de participant : <%=@attendance_participants.count  %></h4>
+  <p>Liste des participants :</p>
+  <ul>
+    <% @attendance_participants.each do |participant|%>
+    <li><%= participant.first_name %></li>
+      <ul>
+        <li><%= participant.email %></li>
+        <li><%= participant.description %></li>
+      </ul>
+    <% end %>
+  </ul>
+  <%= link_to "Editer l'event", event_path(@event.id), class: "btn btn-primary" %>
+</div>

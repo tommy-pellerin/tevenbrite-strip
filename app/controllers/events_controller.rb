@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :authenticate_user!, only:[:new,:create]
+  before_action :authenticate_user!, except:[:index,:show]
 
   def index
     @events = Event.all
@@ -30,6 +30,14 @@ class EventsController < ApplicationController
       flash[:danger] = "echec de création d'event !"
       render "new", status: :unprocessable_entity
     end
+  end
+
+  def edit
+
+  end
+
+  def update
+    
   end
 
   def destroy
