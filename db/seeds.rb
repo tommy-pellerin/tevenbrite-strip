@@ -12,6 +12,7 @@
 
 User.destroy_all
 Event.destroy_all
+Attendance.destroy_all
 
 # Faker::Config.locale='fr'
 # 5.times do

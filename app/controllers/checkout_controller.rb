@@ -32,10 +32,19 @@ class CheckoutController < ApplicationController
     @session = Stripe::Checkout::Session.retrieve(params[:session_id])
     @payment_intent = Stripe::PaymentIntent.retrieve(@session.payment_intent)
     @event_id = @session.metadata.event_id
-    redirect_to event_path(@event_id)
+    @event = Event.find(@event_id)
+    @attendance = Attendance.new(user:current_user,event:@event)    
+    if @attendance.save
+      flash[:success] = "Le paiement a été validé, félicitation votre place est reservée !"
+      redirect_to event_path(@event_id)
+    else
+      render 'events'
+    end    
   end
 
   def cancel
+    #le lien fonctionne sans code...
+   
   end
 
 end
