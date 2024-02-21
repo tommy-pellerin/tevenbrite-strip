@@ -33,11 +33,20 @@ class EventsController < ApplicationController
   end
 
   def edit
-
+    @event = Event.find(params[:id])
   end
 
   def update
-    
+    @event = Event.find(params[:id])
+      puts "%"*10
+      puts event_params       
+      puts "%"*10
+      if @event.update(title:event_params[:title],description:event_params[:description],start_date:event_params[:start_date],duration:event_params[:duration],price:event_params[:price],location:event_params[:location],admin:current_user)
+        flash[:success] = "L'event' a été mise à jour correctement."
+        redirect_to @event
+      else
+        render :edit
+      end
   end
 
   def destroy
