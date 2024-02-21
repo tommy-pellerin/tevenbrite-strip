@@ -1,0 +1,15 @@
+
+<div class="container">
+  <h1>Event show</h1>
+  <p>title : <%= @event.title %></p>
+  <p>description : <%= @event.description %></p>
+  <p>nombre d'inscrit : <%= @event.users.count %></p>
+  <p>créateur : <%= @event.admin.first_name %></p>
+  <p>date de début : <%= @event.start_date %></p>
+  <p>date de fin : <%= @end_date %></p>
+  <p>Lieu : <%= @event.location %></p>
+  <p>prix : <%= @event.price %>€</p>
+  <% if current_user == @event.admin %>
+    <p><%= link_to "Destroy", event_path(@event), data: {turbo: true,turbo_method: :delete,turbo_confirm: "Are you sure?"}, class:"btn btn-danger" %></p>
+  <% end %>
+</div>
